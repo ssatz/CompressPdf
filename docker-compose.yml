@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+
+  compress:
+    build: ./
+
+  web:
+    image: caddy/caddy:alpine
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - compress
+  
