@@ -1,0 +1,24 @@
+name: publish
+
+on: [push]
+
+jobs:
+ build-and-push-image:
+  runs-on: ubuntu-latest
+    
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build the hello-docker Docker image
+      run: |
+        docker build . --tag ghcr.io/ssatz/compresspdf:latest
+        docker run ghcr.io/ssatz/compresspdf:latest
+        docker push ghcr.io/ssatz/compresspdf:latest
