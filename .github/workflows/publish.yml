@@ -20,5 +20,4 @@ jobs:
     - name: Build the hello-docker Docker image
       run: |
         docker build . --tag ghcr.io/ssatz/compresspdf:latest
-        docker run ghcr.io/ssatz/compresspdf:latest
         docker push ghcr.io/ssatz/compresspdf:latest
