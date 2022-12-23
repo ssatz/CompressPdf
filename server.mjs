@@ -54,8 +54,7 @@ export const handler = async (filename) => {
   
   const cmd = `gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=/tmp/${outputFilename} /tmp/${filename}`;
   console.log(cmd);
-  let logs = execSync(cmd,{stdio: 'inherit'});
-  console.log(logs);
+  execSync(cmd,{stdio: 'inherit'});
 
   if (fs.existsSync(`/tmp/${outputFilename}`)) {
    const fileStream = fs.createReadStream(`/tmp/${outputFilename}`);
@@ -66,7 +65,7 @@ export const handler = async (filename) => {
       Body: fileStream,
       contentType : 'application/pdf'
     }));
-    execSync(`rm /tmp/${outputFilename}`);
+    execSync(`rm /tmp/${filename}`,{stdio: 'inherit'});
     console.log('ends here');
   }
 };
