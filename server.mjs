@@ -14,9 +14,7 @@ const HOST = '0.0.0.0';
 const app = express();
 morgan('combined');
 app.use(express.json());
-app.use(
-  fileUpload()
-);
+
 app.post('/compress', (req, res) => {
   handler(req.body.filename)
   return res.json({requestBody: req.body})
