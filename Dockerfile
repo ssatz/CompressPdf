@@ -18,4 +18,4 @@ RUN npm install --production
 COPY . .
 
 EXPOSE 8080
-CMD [ "node", "server.mjs" ]
+CMD [ "pm2-runtime", "process.yml" ]
