@@ -7,7 +7,7 @@ const s3Client = new S3Client({ region: process.env.AWS_S3_REGION });
 import {execSync} from 'child_process';
 
 // Constants
-const PORT = 8080;
+const PORT = 6499;
 const HOST = '0.0.0.0';
 
 // App

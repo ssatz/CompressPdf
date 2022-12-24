@@ -14,8 +14,10 @@ RUN npm install --production
 # If you are building your code for production
 # RUN npm ci --only=production
 
+RUN npm install pm2 -g
+
 # Bundle app source
 COPY . .
 
 EXPOSE 8080
-CMD [ "pm2-runtime", "process.yml" ]
+CMD [ "pm2-runtime","--json", "process.yml" ]
