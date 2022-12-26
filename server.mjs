@@ -22,7 +22,7 @@ app.post('/compress', (req, res) => {
     return res.status(429).send('Empty UUID');
   }
   try {
-    handler(req.body.filename)
+    handler(req.body.filename,req.body.uuid,req.body.userId)
     return res.send('ok');
   } catch (error) {
     response
