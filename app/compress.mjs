@@ -37,7 +37,7 @@ export const handler = async (filename, uuid, userId='guest') => {
             Bucket: process.env.AWS_S3_BUCKET,
             Key: `${userId}/${outputFilename}`,
             Body: fileStream,
-            contentType: 'application/pdf'
+            ContentType: 'application/pdf'
         }));
         execSync(`rm /tmp/${filename}`, { stdio: 'inherit' });
         console.log('ends here');
