@@ -13,7 +13,7 @@ morgan('combined');
 app.use(express.json());
 
 app.post('/compress', (req, res) => {
-  if (filename == null || typeof filename == undefined) {
+  if (req.body.filename == null || typeof req.body.filename == undefined) {
     console.log('Empty filename');
     return res.status(429).send('Empty file');
   }
@@ -23,7 +23,7 @@ app.post('/compress', (req, res) => {
   } catch (error) {
     response
       .status(500)
-      .send(error.message)
+      .send('something wrong try again!')
   }
 });
 
