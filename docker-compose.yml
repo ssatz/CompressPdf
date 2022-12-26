@@ -4,6 +4,11 @@ services:
 
   compress:
     build: ./
+    environment:
+     - "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+     - "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+     - "AWS_REGION=${AWS_S3_REGION}"
+     - "AWS_S3_BUCKET=${AWS_S3_BUCKET}"
 
   web:
     image: caddy/caddy:alpine
@@ -11,7 +16,6 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
     ports:
       - "80:80"
-      - "443:443"
     depends_on:
       - compress
   
