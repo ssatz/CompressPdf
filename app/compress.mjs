@@ -11,7 +11,7 @@ const streamToString = (stream) =>
         stream.on("end", () => resolve(Buffer.concat(chunks)));
     });
 
-export const handler = async (filename) => {
+export const handler = async (filename, uuid, userId='guest') => {
 
     // Get the object from the Amazon S3 bucket. It is returned as a ReadableStream.
     const data = await s3Client.send(new GetObjectCommand({
@@ -22,7 +22,7 @@ export const handler = async (filename) => {
     // Convert the ReadableStream to a string.
     const bodyContents = await streamToString(data.Body);
     fs.writeFileSync(`/tmp/${filename}`, bodyContents);
-    const outputFilename = `compressed_${filename}`;
+    const outputFilename = `${uuid}.pdf`;
 
     console.log(outputFilename);
 
@@ -35,7 +35,7 @@ export const handler = async (filename) => {
 
         await s3Client.send(new PutObjectCommand({
             Bucket: process.env.AWS_S3_BUCKET,
-            Key: outputFilename,
+            Key: `${userId}/${outputFilename}`,
             Body: fileStream,
             contentType: 'application/pdf'
         }));

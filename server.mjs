@@ -17,6 +17,10 @@ app.post('/compress', (req, res) => {
     console.log('Empty filename');
     return res.status(429).send('Empty file');
   }
+  if (req.body.uuid == null || typeof req.body.uuid == undefined) {
+    console.log('Empty UUID');
+    return res.status(429).send('Empty UUID');
+  }
   try {
     handler(req.body.filename)
     return res.send('ok');
