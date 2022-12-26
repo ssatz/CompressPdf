@@ -17,7 +17,7 @@ export const handler = async (filename, uuid, userId='guest') => {
     const data = await s3Client.send(new GetObjectCommand({
         Bucket: process.env.AWS_S3_BUCKET,
         Key: filename,
-        contentType: 'application/pdf'
+        ContentType: 'application/pdf'
     }));
     // Convert the ReadableStream to a string.
     const bodyContents = await streamToString(data.Body);
