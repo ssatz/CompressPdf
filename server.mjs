@@ -3,6 +3,7 @@ import express from 'express';
 import morgan from 'morgan'
 import { handler } from './app/compress.mjs';
 
+
 // Constants
 const PORT = 6499;
 const HOST = '0.0.0.0';
