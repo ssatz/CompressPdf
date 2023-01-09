@@ -9,13 +9,20 @@ services:
      - "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
      - "AWS_REGION=${AWS_S3_REGION}"
      - "AWS_S3_BUCKET=${AWS_S3_BUCKET}"
+     - "PUSHER_HOST=${PUSHER_HOST}"
+     - "PUSHER_APP_ID=${PUSHER_APP_ID}"
+     - "PUSHER_APP_KEY=${PUSHER_APP_KEY}"
+     - "PUSHER_APP_SECRET=${PUSHER_APP_SECRET}"
+     - "PUSHER_PORT=${PUSHER_PORT}"
+     - "PUSHER_CHANNEL=${PUSHER_CHANNEL}"
+     - "PUSHER_EVENT=${PUSHER_EVENT}" 
 
   web:
     image: caddy/caddy:alpine
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
     ports:
-      - "80:80"
+      - "90:80"
     depends_on:
       - compress
   

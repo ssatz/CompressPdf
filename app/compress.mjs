@@ -48,8 +48,9 @@ export const handler = async (filename, uuid, userId = 'guest') => {
             Body: fileStream,
             ContentType: 'application/pdf'
         }));
-        execSync(`rm /tmp/${filename}`, { stdio: 'inherit' });
-        console.log('ends here');
+        fs.rmSync(`/tmp/${filename}`);
+        fs.rmSync(`/tmp/${outputFilename}`);
+        console.log('Temp files deleted');
         pusher.trigger(process.env.PUSHER_CHANNEL, process.env.PUSHER_EVENT, JSON.stringify({
             uuid: uuid,
             failed: false
